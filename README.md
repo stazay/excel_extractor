@@ -147,9 +147,7 @@ Next, all data from columns A, B, C, F, M and Q are being extracted to the dataf
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
 After each entry extracted, a print statement will be made.
  
- 4. Extract relevant data from workbook_2 to dataframe (df)
-... and then extract relevant data from workbook_3 via queried_column: "D" in sheet_index: "2"
-... and then extract relevant data from workbook_3 via queried_column: "C" in sheet_index: "3" (if needed)
+ 4. Extract relevant data from workbook_2 to dataframe (df), and then extract relevant data from workbook_3 via queried_column: "D" in sheet_index: "2", and then extract relevant data from workbook_3 via queried_column: "C" in sheet_index: "3".
 ````
 extract_additional_data_to_df(
 df=df,
