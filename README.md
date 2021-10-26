@@ -4,7 +4,7 @@ The purpose of this code is to be able to consolidate data from Excel spreadshee
 
 A further function allows it to then form a relational database - and extract data from other spreadsheets where there is a matching point of reference.
 
-Finally, Python can then return a dataframe - which can be used with Pandas, or to an Excel workbook for later use.
+Finally, Python can then return a dataframe - which can be used with Pandas, or be written to an Excel workbook for later use.
 
 
 # Installation
