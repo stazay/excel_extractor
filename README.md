@@ -66,7 +66,7 @@ queried_column    -- the column of information that data is being extracted from
 queried_row       -- the row of information that data is being extracted from
 ````
 
-extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows="default", clean_datetime=False, print_statements=True)
+extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 ````
 THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME
 df                -- the dataframe being written
@@ -81,7 +81,7 @@ clean_datetime    -- will clean datetime objects into the desired format input a
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
 ````
 
-extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups=[], clean_datetime=False, check_previous=False, print_statements=True)
+extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
 ````
 THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
 IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
@@ -103,7 +103,7 @@ check_previous    -- will check previous X entries for any match with the querie
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
 ````
 
-write_df_to_excel_workbook(df, workbook, print_statements=True)
+write_df_to_excel_workbook(df, workbook, print_statements)
 ````
 THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL
 df                -- the dataframe being extracted from
