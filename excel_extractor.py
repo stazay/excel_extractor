@@ -1,5 +1,5 @@
 """
-Basic Relational Database Creator           - Saba Tazayoni, 15/10/2021
+excel_extractor - a basic relational database creator       - Saba Tazayoni, 15/10/2021
 
 The purpose of this code is to be able to consolidate data from Excel spreadsheets. 
 A further function allows it to then form a relational database - and extract data from other spreadsheets 
@@ -246,74 +246,7 @@ def write_df_to_excel_workbook(df, workbook, print_statements=True):
     output_workbook.close()
 
 
-# SAMPLE CODE
-# SAMPLE CODE
-
-# STEP ONE
-# 1. Create the output workbook and dataframe 
-df = []
-output_workbook = xlsx.Workbook("output.xlsx")
-output_worksheet = output_workbook.add_worksheet()
-
-
-# STEP TWO
-# 2. Define workbooks of interest
-workbook_1 = xw.Book("C:\\Users\\James\\Documents\\workbook_1.xlsx")
-workbook_2 = xw.Book("C:\\Users\\James\\Documents\\workbook_2.xlsx")
-workbook_3 = xw.Book("C:\\Users\\James\\Documents\\workbook_3.xlsx")
-
-
-# STEP THREE
-# 3. Extract relevant data from workbook_1 to dataframe (df)
-workbook_1_sheet_index = 0
-last_row = check_total_rows(workbook_1, workbook_1_sheet_index)
-
-extract_new_entries_to_df(
-    df=df, 
-    workbook=workbook_1, 
-    sheet_index=workbook_1_sheet_index,
-    desired_columns=["A", "B", "C", "F", "M", "Q"], 
-    queried_rows=(1, 250), 
-    clean_datetime="%d/%m/%Y", 
-    print_statements=True
-)
-
-# STEP FOUR
-# 4. Extract relevant data from workbook_2 to dataframe (df)
-# ... and then extract relevant data from workbook_3 via queried_column: "D" in sheet_index: "2"
-# ... and then extract relevant data from workbook_3 via queried_column: "C" in sheet_index: "3" (if needed)
-extract_additional_data_to_df(
-    df=df, 
-    workbook=workbook_2, 
-    sheet_index=2, 
-    desired_columns=["A","F"], 
-    queried_df_index=3, 
-    queried_column="D", 
-    backups=[],
-    clean_datetime=False, 
-    check_previous=True,
-    print_statements=True
-)
-
-workbook_3_backups = define_backups(workbook_3, 8, ["F", "H"], 3, "D")
-
-extract_additional_data_to_df(
-    df=df, 
-    workbook=workbook_3, 
-    sheet_index=1, 
-    desired_columns=["F", "M"], 
-    queried_df_index=3, 
-    queried_column="C", 
-    backups=[workbook_3_backups],
-    clean_datetime="%d/%m/%Y", 
-    check_previous=True,
-    print_statements=True
-)
-
-# STEP FIVE
-# 5. Paste data from dataframe (df) to output workbook
-write_df_to_excel_workbook(
-    df=df,
-    workbook="output.xlsx",
-    print_statements=True
-)
+# IMPORTANT
+# IMPORTANT
+if __name__ == "__main__":
+    pass
