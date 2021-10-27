@@ -128,7 +128,7 @@ workbook_2 = xw.Book("C:\Users\James\Documents\workbook_2.xlsx")
 workbook_3 = xw.Book("C:\Users\James\Documents\workbook_3.xlsx")
 ````
 
-3. Extract relevant data from workbook_1 to dataframe (df)
+3. Extract relevant data from workbook_1 to dataframe (df).
 ````
 workbook_1_sheet_index = 0
 
@@ -202,7 +202,7 @@ All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime)
 Previous entry in the dataframe is being checked for a match in the `queried_df_index`, to save time and extract the same information extracted as previously.
 After each entry extracted, a print statement will be made.
 
-5. Paste data from dataframe (df) to output workbook
+5. Paste data from dataframe (df) to output workbook.
 ````
 write_df_to_excel_workbook(
 df=df,
