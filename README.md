@@ -20,34 +20,7 @@ pip install .
 import excel_extractor
 ````
 
-# Description of functions included
-````
-check_total_rows(workbook, sheet_index)
-THIS FUNCTION CHECKS NUMBER OF ROWS IN THE WORKSHEET.
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-````
-____
-
-````
-check_row_number(workbook, sheet_index, queried_column, queried_datum)
-THIS FUNCTION LOOKS FOR CORRESPONDING DATA WITHIN THE QUERIED COLUMN, AND RETURNS A ROW NUMBER WITH A MATCH.
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-queried_column    -- the column of information that data is being extracted from
-queried_datum     -- an input that corresponds to wanted info from the queried_column
-````
-____
-
-````
-clean_datetime_object(input, format)
-THIS FUNCTION CLEANS DATETIME OBJECTS INTO A DESIRED FORMAT
-input             -- the object being amended
-format            -- the desired format, see datetime.strftime
-                      eg: "%d/%m/%Y" will return "dd/mm/yyyy"
-````
-____
-
+# Description of larger functions included
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
 THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF()
