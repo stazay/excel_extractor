@@ -21,9 +21,9 @@ import excel_extractor
 ````
 
 # Description of larger functions included
+define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF().
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
-THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF()
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
 desired_columns   -- a list containing all of the columns from which to extract data from
@@ -34,9 +34,9 @@ queried_column    -- the column of information that is being queried for a match
 ````
 ____
 
+extract_datum() - THIS FUNCTION SEARCHES FOR CORRESPONDING DATA WITHIN THE QUERIED CELL, AND RETURNS IT AS AN OUTPUT.
 ````
 extract_datum(workbook, sheet_index, queried_column, queried_row)
-THIS FUNCTION SEARCHES FOR CORRESPONDING DATA WITHIN THE QUERIED CELL, AND RETURNS IT AS AN OUTPUT.
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
 queried_column    -- the column of information that data is being extracted from
@@ -44,9 +44,9 @@ queried_row       -- the row of information that data is being extracted from
 ````
 ____
 
+extract_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME
 ````
-extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
-THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME
+extract_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 df                -- the dataframe being written
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
@@ -60,10 +60,9 @@ print_statements  -- will return print-statements outlining progress of data ext
 ````
 ____
 
+extract_additional_data_to_df() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
 ````
 extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
-THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
-IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
 df                -- the dataframe being written
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
@@ -83,9 +82,9 @@ print_statements  -- will return print-statements outlining progress of data ext
 ````
 ____
 
+write_df_to_excel_workbook() - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL
 ````
 write_df_to_excel_workbook(df, workbook, print_statements)
-THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL
 df                -- the dataframe being extracted from
 workbook          -- the workbook being written
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
