@@ -130,19 +130,17 @@ workbook_3 = xw.Book("C:\Users\James\Documents\workbook_3.xlsx")
 
 3. Extract relevant data from workbook_1, sheet_index: 0, from columns "A", "B", "C", "F", "M" & "Q" to dataframe (df).
 ````
-workbook_1_sheet_index = 0
-
 extract_new_entries_to_df(
 df=df,
 workbook=workbook_1,
-sheet_index=workbook_1_sheet_index,
+sheet_index=0,
 desired_columns=["A", "B", "C", "F", "M", "Q"],
 queried_rows=(1, 250),
 clean_datetime="%d/%m/%Y",
 print_statements=True
 )
 ````
-The above code defines that we are using sheet_index: 0 of `workbook_1`.
+The above code defines that we are using `workbook_1` to extract info from sheet_index:0.
 Next, all data from columns A, B, C, F, M and Q are being extracted to the dataframe, within all rows between the range of 1 and 250.
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
 After each entry extracted, a print statement will be made.
