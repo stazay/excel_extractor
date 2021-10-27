@@ -20,7 +20,7 @@ pip install .
 import excel_extractor
 ````
 
-# Description of larger functions included
+# Description of key functions included
 define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF().
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
