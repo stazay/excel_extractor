@@ -121,12 +121,16 @@ output_workbook = xlsx.Workbook("output.xlsx")
 output_worksheet = output_workbook.add_worksheet()
 ````
 
+____
+
 2. Define any workbooks of interest, from which you wish to extract data from.
 ````
 workbook_1 = xw.Book("C:\Users\James\Documents\workbook_1.xlsx")
 workbook_2 = xw.Book("C:\Users\James\Documents\workbook_2.xlsx")
 workbook_3 = xw.Book("C:\Users\James\Documents\workbook_3.xlsx")
 ````
+
+____
 
 3. Extract relevant data from workbook_1, sheet_index: 0, from columns "A", "B", "C", "F", "M" & "Q" to dataframe (df).
 ````
@@ -144,6 +148,8 @@ The above code defines that we are using workbook_1 to extract info from sheet_i
 Next, all data from columns A, B, C, F, M and Q are being extracted to the dataframe, within all rows between the range of 1 and 250.
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
 After each entry extracted, a print statement will be made.
+ 
+____
  
  4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in workbook_3 then extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
 ````
@@ -199,6 +205,8 @@ Backup entries are defined in the section above (b).
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
 Previous entry in the dataframe is being checked for a match in the `queried_df_index`, to save time and extract the same information extracted as previously.
 After each entry extracted, a print statement will be made.
+
+____
 
 5. Paste data from dataframe (df) to output workbook.
 ````
