@@ -44,9 +44,9 @@ queried_row       -- the row of information that data is being extracted from
 ````
 ____
 
-extract_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
+extract_new_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
 ````
-extract_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
+extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 df                -- the dataframe being written
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
