@@ -99,7 +99,7 @@ backups           -- this is used as a contingency when no match is found from q
                       NOTE: it is possible to provide multiple backup lists within a single list as the input
 clean_datetime    -- will clean datetime objects into the desired format input as a string, see datetime.strftime (False by default)
                       eg: "%d/%m/%Y"          will return "dd/mm/yyyy"
-check_previous    -- will check previous X entries for any match with the queried_datum, and copy previous information to save time (False by default)
+check_previous    -- will check previous entry for any match with the queried_datum, and copy previous information to save time (False by default)
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
 ````
 
