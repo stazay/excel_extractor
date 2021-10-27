@@ -21,32 +21,35 @@ import excel_extractor
 ````
 
 # Description of functions included
-check_total_rows(workbook, sheet_index)
 ````
+check_total_rows(workbook, sheet_index)
 THIS FUNCTION CHECKS NUMBER OF ROWS IN THE WORKSHEET.
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
 ````
+____
 
-check_row_number(workbook, sheet_index, queried_column, queried_datum)
 ````
+check_row_number(workbook, sheet_index, queried_column, queried_datum)
 THIS FUNCTION LOOKS FOR CORRESPONDING DATA WITHIN THE QUERIED COLUMN, AND RETURNS A ROW NUMBER WITH A MATCH.
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
 queried_column    -- the column of information that data is being extracted from
 queried_datum     -- an input that corresponds to wanted info from the queried_column
 ````
+____
 
-clean_datetime_object(input, format)
 ````
+clean_datetime_object(input, format)
 THIS FUNCTION CLEANS DATETIME OBJECTS INTO A DESIRED FORMAT
 input             -- the object being amended
 format            -- the desired format, see datetime.strftime
                       eg: "%d/%m/%Y" will return "dd/mm/yyyy"
 ````
+____
 
-define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
 ````
+define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
 THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF()
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
@@ -56,18 +59,20 @@ queried_df_index  -- the input being queried for matches within the queried_colu
                       eg: 3                   will take i[3] from the entry in the dataframe, and search for a match within the queried_column
 queried_column    -- the column of information that is being queried for a match against the queried_datum
 ````
+____
 
-extract_datum(workbook, sheet_index, queried_column, queried_row)
 ````
+extract_datum(workbook, sheet_index, queried_column, queried_row)
 THIS FUNCTION SEARCHES FOR CORRESPONDING DATA WITHIN THE QUERIED CELL, AND RETURNS IT AS AN OUTPUT.
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
 queried_column    -- the column of information that data is being extracted from
 queried_row       -- the row of information that data is being extracted from
 ````
+____
 
-extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 ````
+extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME
 df                -- the dataframe being written
 workbook          -- the workbook being queried
@@ -80,9 +85,10 @@ clean_datetime    -- will clean datetime objects into the desired format input a
                       eg: "%d/%m/%Y" will return "dd/mm/yyyy"
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
 ````
+____
 
-extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
 ````
+extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
 THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
 IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
 df                -- the dataframe being written
@@ -102,9 +108,10 @@ clean_datetime    -- will clean datetime objects into the desired format input a
 check_previous    -- will check previous entry for any match with the queried_datum, and copy previous information to save time (False by default)
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
 ````
+____
 
-write_df_to_excel_workbook(df, workbook, print_statements)
 ````
+write_df_to_excel_workbook(df, workbook, print_statements)
 THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL
 df                -- the dataframe being extracted from
 workbook          -- the workbook being written
