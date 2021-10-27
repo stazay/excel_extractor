@@ -44,7 +44,7 @@ queried_row       -- the row of information that data is being extracted from
 ````
 ____
 
-extract_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME
+extract_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
 ````
 extract_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 df                -- the dataframe being written
@@ -82,7 +82,7 @@ print_statements  -- will return print-statements outlining progress of data ext
 ````
 ____
 
-write_df_to_excel_workbook() - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL
+write_df_to_excel_workbook() - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL.
 ````
 write_df_to_excel_workbook(df, workbook, print_statements)
 df                -- the dataframe being extracted from
