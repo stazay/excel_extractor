@@ -151,7 +151,7 @@ After each entry extracted, a print statement will be made.
  
 ____
  
- 4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in workbook_3 then extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
+ 4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in workbook_3, then instead extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
 ````
 extract_additional_data_to_df(
 df=df,
