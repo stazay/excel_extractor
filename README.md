@@ -185,7 +185,7 @@ print_statements=True
 The above code extracts additional data to the dataframe from workbook_2 and workbook_3.
 
 
-(a) First, sheet_index:2 of workbook_2 is searched for matches of the queried_df_index (3rd index in the dataframe and column F from workbook_1). 
+(a) First, sheet_index:2 of workbook_2 is searched for matches of the `queried_df_index` (3rd index in the dataframe and column F from workbook_1). 
 If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the dataframe.
 No backup searches are defined. 
 Datetime objects are not cleaned.
