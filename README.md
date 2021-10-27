@@ -185,25 +185,25 @@ print_statements=True
 The above code extracts additional data to the dataframe from workbook_2 and workbook_3.
 
 
-(a) First, sheet_index:2 of workbook_2 is searched for matches of the `dataframe[i][queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1). 
+(a) First, sheet_index:2 of workbook_2 is searched for matches of the `df[i][queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1). 
 If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the dataframe.
 No backup searches are defined. 
 Datetime objects are not cleaned.
-Previous entry in the dataframe is being checked for a match in the `queried_df_index`, to save time and extract the same information extracted as previously.
+Previous entry in the dataframe is being checked for a match in the `df[i][queried_df_index]`, to save time and extract the same information extracted as previously.
 After each entry extracted, a print statement will be made.
 
 
 (b) Next, a `backup` is defined for the next stage of data extraction (from workbook_3).
-This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `dataframe[i][queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1).
+This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `df[i][queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1).
 If a match is found in the entirety of column D, corresponding data from columns F and H are appended to the dataframe.
 NOTE: The `backup` code is only used if the next stage of the data extraction fails to find any match.
 
 
-(c) Finally, sheet_index:1 of workbook_3 is searched for matches of the `dataframe[queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1).
+(c) Finally, sheet_index:1 of workbook_3 is searched for matches of the `df[queried_df_index]` (3rd index in the item in the dataframe and column F from workbook_1).
 If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the dataframe.
 Backup entries are defined in the section above (b).
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-Previous entry in the dataframe is being checked for a match in the `dataframe[queried_df_index]`, to save time and extract the same information extracted as previously.
+Previous entry in the dataframe is being checked for a match in the `df[queried_df_index]`, to save time and extract the same information extracted as previously.
 After each entry extracted, a print statement will be made.
 
 ____
