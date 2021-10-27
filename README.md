@@ -75,7 +75,7 @@ sheet_index       -- the worksheet being queried
 desired_columns   -- a list containing all of the columns from which to extract data from
                       eg: ["A", "B", "F"] will return data entries from columns A, B and F in Excel
 queried_rows      -- a tuple containing: the range of cells of interest (if left empty, it will assume the that all rows are of interest)
-                      eg: (0, 15) will return data entries from rows 0-15
+                      eg: (1, 15) will return data entries from rows 1-15
 clean_datetime    -- will clean datetime objects into the desired format input as a string, see datetime.strftime (False by default)
                       eg: "%d/%m/%Y" will return "dd/mm/yyyy"
 print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
