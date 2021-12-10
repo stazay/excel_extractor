@@ -21,7 +21,7 @@ import excel_extractor
 ````
 
 # Description of key functions included
-define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTRACT_ADDITIONAL_DATA_TO_DF().
+define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, EXTEND_DF_ENTRIES().
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
 workbook          -- the workbook being queried
@@ -44,9 +44,9 @@ queried_row       -- the row of information that data is being extracted from
 ````
 ____
 
-extract_new_entries_to_df() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
+create_df_entries() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
 ````
-extract_new_entries_to_df(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
+create_df_entries(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
 df                -- the dataframe being written
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
@@ -60,9 +60,9 @@ print_statements  -- will return print-statements outlining progress of data ext
 ````
 ____
 
-extract_additional_data_to_df() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
+extend_df_entries() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE DATAFRAME.
 ````
-extract_additional_data_to_df(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
+extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
 df                -- the dataframe being written
 workbook          -- the workbook being queried
 sheet_index       -- the worksheet being queried
@@ -113,7 +113,7 @@ ____
 
 3. Extract relevant data from workbook_1, sheet_index: 0, from columns "A", "B", "C", "F", "M" & "Q" to dataframe (df).
 ````
-extract_new_entries_to_df(
+create_df_entries(
 df=df,
 workbook=workbook_1,
 sheet_index=0,
@@ -132,7 +132,7 @@ ____
  
  4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in previous search, then instead extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
 ````
-extract_additional_data_to_df(
+extend_df_entries(
 df=df,
 workbook=workbook_2,
 sheet_index=2,
@@ -147,7 +147,7 @@ print_statements=True
 
 workbook_3_backups = define_backups(workbook_3, 8, ["F", "H"], 3, "D")
 
-extract_additional_data_to_df(
+extend_df_entries(
 df=df,
 workbook=workbook_3,
 sheet_index=1,
