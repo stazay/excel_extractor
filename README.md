@@ -1,4 +1,4 @@
-# excel_extractor - a basic relational database creator
+# excel_extractor - a basic 'relational database' tool
 
 The purpose of this code is to be able to consolidate data from Excel spreadsheets. 
 
