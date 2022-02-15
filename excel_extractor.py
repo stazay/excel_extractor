@@ -1,5 +1,5 @@
 """
-excel_extractor - a basic relational database creator       - Saba Tazayoni, 15/10/2021
+excel_extractor - a basic 'relational database' tool       - Saba Tazayoni, 15/10/2021
 The purpose of this code is to be able to consolidate data from Excel spreadsheets. 
 A further function allows it to then form a relational database - and extract data from other spreadsheets 
     where there is a matching point of reference.
