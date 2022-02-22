@@ -251,7 +251,7 @@ def write_df_to_excel_workbook(df, workbook, print_statements=True):
             output_worksheet.write(row, col, j)
         row += 1
 
-        # Display Progress
+        # display progress
         if print_statements:
             progress = ((index/len(df))*100)
             print(f"Extracting data from dataframe: {int(progress)}%: {i}")
