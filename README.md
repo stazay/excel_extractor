@@ -21,7 +21,7 @@ import excel_extractor
 ````
 
 # Description of key functions included
-define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, EXTEND_DF_ENTRIES().
+define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR USE WITH EXTEND_DF_ENTRIES().
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
 workbook          -- the workbook being queried
