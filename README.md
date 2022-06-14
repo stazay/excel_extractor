@@ -24,70 +24,97 @@ import excel_extractor
 define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR USE WITH EXTEND_DF_ENTRIES().
 ````
 define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-desired_columns   -- a list containing all of the columns from which to extract data from
-                      eg: ["A", "B", "F"]     will return data entries from columns A, B and F in Excel
-queried_df_index  -- the input being queried for matches within the queried_column; namely an index of the data in a dataframe entry (returning the queried_datum)
-                      eg: 3                   will take i[3] from the entry in the dataframe, and search for a match within the queried_column
-queried_column    -- the column of information that is being queried for a match against the queried_datum
+        - workbook          -- the workbook being queried
+        - sheet_index       -- the worksheet being queried
+        - desired_columns   -- a list containing all of the columns from which to extract data from
+                                eg: ['A', 'B', 'F']
+                                will return data entries from columns A, B and F in Excel
+        - queried_df_index  -- the input being queried for matches within the queried_column;
+                                namely an index of the data in a dataframe entry
+                                (returning the queried_datum)
+                                eg: 3
+                                will take i[3] from the entry in the dataframe,
+                                and search for a match within the queried_column
+        - queried_column    -- the column of information that is being queried for a match against
+                                the queried_datum
 ````
 ____
 
 extract_datum() - THIS FUNCTION SEARCHES FOR CORRESPONDING DATA WITHIN THE QUERIED CELL, AND RETURNS IT AS AN OUTPUT.
 ````
 extract_datum(workbook, sheet_index, queried_column, queried_row)
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-queried_column    -- the column of information that data is being extracted from
-queried_row       -- the row of information that data is being extracted from
+        - workbook          -- the workbook being queried
+        - sheet_index       -- the worksheet being queried
+        - queried_column    -- the column of information that data is being extracted from
+        - queried_row       -- the row of information that data is being extracted from
 ````
 ____
 
 create_df_entries() - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR DATAFRAME; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE DATAFRAME.
 ````
 create_df_entries(df, workbook, sheet_index, desired_columns, queried_rows, clean_datetime, print_statements)
-df                -- the dataframe being written
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-desired_columns   -- a list containing all of the columns from which to extract data from
-                      eg: ["A", "B", "F"] will return data entries from columns A, B and F in Excel
-queried_rows      -- a tuple containing: the range of cells of interest (if left empty, it will assume the that all rows are of interest)
-                      eg: (1, 15) will return data entries from rows 1-15
-clean_datetime    -- will clean datetime objects into the desired format input as a string, see datetime.strftime (False by default)
-                      eg: "%d/%m/%Y" will return "dd/mm/yyyy"
-print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
+        - df                -- the dataframe being written
+        - workbook          -- the workbook being queried
+        - sheet_index       -- the worksheet being queried
+        - desired_columns   -- a list containing all of the columns from which to extract data from
+                                eg: ['A', 'B', 'F']
+                                will return data entries from columns A, B and F in Excel
+        - queried_rows      -- a tuple containing: the range of cells of interest
+                                (if left empty, it will assume the that all rows are of interest)
+                                eg: (0, 15)
+                                will return data entries from rows 0-15
+        - clean_datetime    -- will clean datetime objects into the desired format input as a
+                                string, see datetime.strftime (False by default)
+                                eg: '%d/%m/%Y' will return 'dd/mm/yyyy'
+        - print_statements  -- will return print-statements outlining progress of data extraction
+                                if True (True by default)
 ````
 ____
 
 extend_df_entries() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO ENTRIES WITHIN THE DATAFRAME.
 ````
 extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, check_previous, print_statements)
-df                -- the dataframe being written
-workbook          -- the workbook being queried
-sheet_index       -- the worksheet being queried
-desired_columns   -- a list containing all of the columns from which to extract data from
-                      eg: ["A", "B", "F"]     will return data entries from columns A, B and F in Excel
-queried_df_index  -- the input being queried for matches within the queried_column; namely an index of the data in a dataframe entry (returning the queried_datum)
-                      eg: 3                   will take i[3] from the entry in the dataframe, and search for a match within the queried_column
-queried_column    -- the column of information that is being queried for a match against the queried_datum
-backups           -- this is used as a contingency when no match is found from queried_input within the queried_column - use this to provide a secondary extraction step
-                      eg: [[backup_workbook, 3, ["A", "B", "F"], 3, "C"]]
-                        ^ list containing the following: a backup_workbook, backup_sheet_index, desired_columns, queried_df_index, queried_column
-                      NOTE: it is possible to provide multiple backup lists within a single list as the input
-clean_datetime    -- will clean datetime objects into the desired format input as a string, see datetime.strftime (False by default)
-                      eg: "%d/%m/%Y"          will return "dd/mm/yyyy"
-check_previous    -- will check previous entry for any match with the queried_datum, and copy previous information to save time (False by default)
-print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
+        - df                -- the dataframe being written
+        - workbook          -- the workbook being queried
+        - sheet_index       -- the worksheet being queried
+        - desired_columns   -- a list containing all of the columns from which to extract data from
+                                eg: ['A', 'B', 'F']
+                                will return data entries from columns A, B and F in Excel
+        - queried_df_index  -- the input being queried for matches within the queried_column;
+                                namely an index of the data in a dataframe entry
+                                (returning the queried_datum)
+                                eg: 3
+                                will take i[3] from the entry in the dataframe,
+                                and search for a match within the queried_column
+        - queried_column    -- the column of information that is being queried for a match against
+                                the queried_datum
+        - backups           -- this is used as a contingency when no match is found from
+                                queried_input within the queried_column - use to provide a secondary
+                                extraction step
+                                eg: [[backup_workbook, 3, ['A', 'B', 'F'], 3, 'C']]
+                                ^ list containing the following:
+                                backup_workbook, backup_sheet_index, desired_columns,
+                                queried_df_index, queried_column
+                                NOTE: it is possible to provide multiple backup lists within a
+                                single list as the input
+        - clean_datetime    -- will clean datetime objects into the desired format input as a
+                                string, see datetime.strftime (False by default)
+                                eg: '%d/%m/%Y'
+                                will return 'dd/mm/yyyy'
+        - check_previous    -- will check previous entry for any match with the queried_datum,
+                                and copy previous information to save time (False by default)
+        - print_statements  -- will return print-statements outlining progress of data extraction
+                                if True (True by default)
 ````
 ____
 
 write_df_to_excel_workbook() - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL.
 ````
 write_df_to_excel_workbook(df, workbook, print_statements)
-df                -- the dataframe being extracted from
-workbook          -- the workbook being written
-print_statements  -- will return print-statements outlining progress of data extraction if True (True by default)
+        - df                -- the dataframe being extracted from
+        - workbook          -- the workbook being written
+        - print_statements  -- will return print-statements outlining progress of data extraction
+                                if True (True by default)
 ````
 
 
