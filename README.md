@@ -74,7 +74,7 @@ ____
 extend_df_entries() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO ENTRIES WITHIN THE DATAFRAME.
 ````
 extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups, clean_datetime, 
-                        check_previous, print_statements)
+                    check_previous, print_statements)
         - df                -- the dataframe being written
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
