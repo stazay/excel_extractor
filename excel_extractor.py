@@ -154,7 +154,7 @@ def create_df_entries(df, workbook, sheet_index, desired_columns, queried_rows="
             print(f"Extracting data from {workbook}: 100%")
         return df
 
-    # raise error in case of issues
+    # raise exception in case of issues
     except:
         print(
             f"Queried Range: {queried_rows} must be a TUPLE, containing only TWO numbers, whereby the second number is bigger than the first number")
