@@ -68,7 +68,7 @@ def clean_datetime_object(input, format):
     return input
 
 
-def define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column):
+def define_backups(workbook, sheet_index, desired_columns, queried_index, queried_column):
     """
     THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTEND_DF_ENTRIES().
         - workbook          -- the workbook being queried
@@ -76,7 +76,7 @@ def define_backups(workbook, sheet_index, desired_columns, queried_df_index, que
         - desired_columns   -- a list containing all of the columns from which to extract data from
                                 eg: ['A', 'B', 'F']
                                 will return data entries from columns A, B and F in Excel
-        - queried_df_index  -- the input being queried for matches within the queried_column;
+        - queried_index     -- the input being queried for matches within the queried_column;
                                 namely an index of the data in a dataframe entry
                                 (returning the queried_datum)
                                 eg: 3
@@ -87,7 +87,7 @@ def define_backups(workbook, sheet_index, desired_columns, queried_df_index, que
     """
     try:
         backups = [workbook, sheet_index, desired_columns,
-                   queried_df_index, queried_column]
+                   queried_index, queried_column]
         return backups
     except:
         print("Backups not configured in usable format.")
@@ -175,7 +175,7 @@ def create_df_entries(df, workbook, sheet_index, desired_columns, queried_rows="
         sys.exit(1)
 
 
-def extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_index, queried_column, backups=[], clean_datetime=False, check_previous=False, print_statements=True):
+def extend_df_entries(df, workbook, sheet_index, desired_columns, queried_index, queried_column, backups=[], clean_datetime=False, check_previous=False, print_statements=True):
     """
     THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR DATAFRAME;
     IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
@@ -186,7 +186,7 @@ def extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_ind
         - desired_columns   -- a list containing all of the columns from which to extract data from
                                 eg: ['A', 'B', 'F']
                                 will return data entries from columns A, B and F in Excel
-        - queried_df_index  -- the input being queried for matches within the queried_column;
+        - queried_index     -- the input being queried for matches within the queried_column;
                                 namely an index of the data in a dataframe entry
                                 (returning the queried_datum)
                                 eg: 3
@@ -200,7 +200,7 @@ def extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_ind
                                 eg: [[backup_workbook, 3, ['A', 'B', 'F'], 3, 'C']]
                                 ^ list containing the following:
                                 backup_workbook, backup_sheet_index, desired_columns,
-                                queried_df_index, queried_column
+                                queried_index, queried_column
                                 NOTE: it is possible to provide multiple backup lists within a
                                 single list as the input
         - clean_datetime    -- will clean datetime objects into the desired format input as a
@@ -213,10 +213,10 @@ def extend_df_entries(df, workbook, sheet_index, desired_columns, queried_df_ind
                                 if True (True by default)
     """
     for (index, i) in enumerate(df):
-        queried_datum = i[queried_df_index]
+        queried_datum = i[queried_index]
 
         # check previous to save time
-        if (check_previous == True) and (len(df[index-1]) > 0) and ((df[index-1][queried_df_index]) == queried_datum):
+        if (check_previous == True) and (len(df[index-1]) > 0) and ((df[index-1][queried_index]) == queried_datum):
             entry_difference = (len(df[index-1]) - len(i))
             for j in range(entry_difference):
                 i.append(None)
