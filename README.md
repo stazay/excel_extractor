@@ -23,13 +23,13 @@ import excel_extractor
 # Description of key functions included
 define_backups() - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR USE WITH EXTEND_DF_ENTRIES().
 ````
-define_backups(workbook, sheet_index, desired_columns, queried_df_index, queried_column)
+define_backups(workbook, sheet_index, desired_columns, queried_index, queried_column)
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
                                 eg: ['A', 'B', 'F']
                                 will return data entries from columns A, B and F in Excel
-        - queried_df_index  -- the input being queried for matches within the queried_column;
+        - queried_index     -- the input being queried for matches within the queried_column;
                                 namely an index of the data in a dataframe entry
                                 (returning the queried_datum)
                                 eg: 3
