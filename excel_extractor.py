@@ -5,8 +5,8 @@ excel_extractor - a basic 'relational database' tool       - Saba Tazayoni, 15/1
     A further function allows it to use links between these spreadsheets - 
     and extract data from other spreadsheets where there is a matching point of reference.
 
-    Finally, Python can then return a nested list - 
-    which can be written to an Excel workbook for later use.
+    Finally, Python can then return a nested list - each sub-list representing a row from
+    the spreadsheet - which can be written to an Excel workbook for later use.
 """
 
 # IMPORTS
