@@ -4,7 +4,7 @@ The purpose of this code is to be able to consolidate data from Excel spreadshee
 
 A further function allows it to use links between these spreadsheets - and extract data from other spreadsheets where there is a matching point of reference.
 
-Finally, Python can then return a nested list - which can be written to an Excel workbook for later use.
+Finally, Python can then return a nested list - each sub-list representing what would be a row from the spreadsheet - which can be written to an Excel workbook for later use.
 
 
 # Installation
