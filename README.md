@@ -33,10 +33,12 @@ ____
 extend_nl_entries() - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR NESTED_LIST; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO ENTRIES WITHIN THE NESTED_LIST.
 ____
 
+write_nl_to_excel_workbook() - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL.
+
+
 
 # Example of code being used
-
-1. Start by defining the nested_list, and output workbook (if wanting to transport the data back to a workbook).
+1. Start by defining the output nested list, and output workbook (if wanting to transport the data back to a workbook).
 ````
 nl = []
 output_workbook = xlsx.Workbook("output.xlsx")
@@ -139,5 +141,5 @@ print_statements=True
 )
 ````
 
-Finally, this code will write the created nested_list into an excel workbook (defined output.xlsx).
+Finally, this code will write the created output (defined `nl`) into an excel workbook (defined `output.xlsx`).
 After each entry extracted, a print statement will be made.
