@@ -136,7 +136,7 @@ After each entry extracted, a print statement will be made.
 
 ____
 
-5. Paste data from nested_list (nl) to output workbook.
+5. Paste data from output nested list (nl) to output workbook.
 ````
 write_nl_to_excel_workbook(
 nl=nl,
