@@ -72,10 +72,10 @@ clean_datetime="%d/%m/%Y",
 print_statements=True
 )
 ````
-The above code defines that we are using workbook_1 to extract info from sheet_index:0.
-Next, all data from columns A, B, C, F, M and Q are being extracted to the nested_list, within all rows between the range of 1 and 250.
-All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-After each entry extracted, a print statement will be made.
+* The above code defines that we are using workbook_1 to extract info from sheet_index:0.
+* Next, all data from columns A, B, C, F, M and Q are being extracted to the nested_list, within all rows between the range of 1 and 250.
+* All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
+* After each entry extracted, a print statement will be made.
  
 ____
  
@@ -113,26 +113,29 @@ print_statements=True
 The above code extracts additional data to the nested_list from workbook_2 and workbook_3.
 
 
-(a) First, sheet_index:2 of workbook_2 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1). 
-If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the nested_list entry.
-No backup searches are defined. 
-Datetime objects are not cleaned.
-Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
-After each entry extracted, a print statement will be made.
+(a) 
+* First, sheet_index:2 of workbook_2 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1). 
+* If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the nested_list entry.
+* No backup searches are defined. 
+* Datetime objects are not cleaned.
+* Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
+* After each entry extracted, a print statement will be made.
 
 
-(b) Next, a `backup` is defined for the next stage of data extraction (from workbook_3).
-This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
-If a match is found in the entirety of column D, corresponding data from columns F and H are appended to the nested_list entry.
-NOTE: The `backup` code is only used if the next stage of the data extraction fails to find any match.
+(b) 
+* Next, a `backup` is defined for the next stage of data extraction (from workbook_3).
+* This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
+* If a match is found in the entirety of column D, corresponding data from columns F and H are appended to the nested_list entry.
+* NOTE: The `backup` code is only used if the next stage of the data extraction fails to find any match.
 
 
-(c) Finally, sheet_index:1 of workbook_3 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
-If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the nested_list entry.
-Backup entries are defined in the section above (b).
-All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
-After each entry extracted, a print statement will be made.
+(c) 
+* Finally, sheet_index:1 of workbook_3 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
+* If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the nested_list entry.
+* Backup entries are defined in the section above (b).
+* All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
+* Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
+* After each entry extracted, a print statement will be made.
 
 ____
 
@@ -145,5 +148,5 @@ print_statements=True
 )
 ````
 
-Finally, this code will write the created output (defined `nl`) into an excel workbook (defined `output.xlsx`).
-After each entry extracted, a print statement will be made.
+* Finally, this code will write the created output (defined `nl`) into an excel workbook (defined `output.xlsx`).
+* After each entry extracted, a print statement will be made.
