@@ -127,11 +127,11 @@ If a match is found in the entirety of column D, corresponding data from columns
 NOTE: The `backup` code is only used if the next stage of the data extraction fails to find any match.
 
 
-(c) Finally, sheet_index:1 of workbook_3 is searched for matches of the `nl[queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
+(c) Finally, sheet_index:1 of workbook_3 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
 If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the nested_list entry.
 Backup entries are defined in the section above (b).
 All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-Previous entry in the nested_list is being checked for a match in the `nl[queried_index]`, to save time and extract the same information extracted as previously.
+Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
 After each entry extracted, a print statement will be made.
 
 ____
