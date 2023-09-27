@@ -123,7 +123,7 @@ print_statements=True
 )
 ````
 
-The above code extracts additional data to the nested_list from workbook_2, using workbook_3 as a backup in case of not finding any match.
+The above code extracts additional data to the nested_list from workbook_3, sheetindex_2. In case of not finding any match, workbook_3, sheet_index_8 is queried instead.
 
 (a) 
 * A `backup` is defined for the next stage of data extraction (from workbook_3) - NOTE: multiple backups can be defined.
