@@ -5,8 +5,8 @@ excel_extractor - a basic 'relational database' tool       - Saba Tazayoni, 15/1
     A further function allows it to use links between these spreadsheets - 
     and extract data from other spreadsheets where there is a matching point of reference.
 
-    Finally, Python can then return a nested list - each sub-list representing a row from
-    the spreadsheet - which can be written to an Excel workbook for later use.
+    Finally, Python can then return a nested list (db) - each sub-list representing a row 
+    from the spreadsheet - which can be written to an Excel workbook for later use.
 """
 
 # IMPORTS
@@ -70,17 +70,17 @@ def clean_datetime_object(input, format):
 
 def define_backups(workbook, sheet_index, desired_columns, queried_index, queried_column):
     """
-    THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTEND_NL_ENTRIES().
+    THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR EXTEND_db_ENTRIES().
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
                                 eg: ['A', 'B', 'F']
                                 will return data entries from columns A, B and F in Excel
         - queried_index     -- the input being queried for matches within the queried_column;
-                                namely an index of the data in a nested_list entry
+                                namely an index of the data in a nested list entry
                                 (returning the queried_datum)
                                 eg: 3
-                                will take i[3] from the entry in the nested_list,
+                                will take i[3] from the entry in the nested list,
                                 and search for a match within the queried_column
         - queried_column    -- the column of information that is being queried for a match against
                                 the queried_datum
@@ -110,11 +110,11 @@ def extract_datum(workbook, sheet_index, queried_column, queried_row):
 
 
 # LARGER FUNCTIONS
-def create_nl_entries(nl, workbook, sheet_index, desired_columns, queried_rows="default", clean_datetime=False, print_statements=True):
+def create_db_entries(db, workbook, sheet_index, desired_columns, queried_rows="default", clean_datetime=False, print_statements=True):
     """
-    THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR NESTED_LIST;
-    ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE NESTED_LIST.
-        - nl                -- the nested_list being written
+    THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR NESTED LIST (DB);
+    ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE NESTED LIST (DB).
+        - db                -- the nested list being written
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
@@ -139,7 +139,7 @@ def create_nl_entries(nl, workbook, sheet_index, desired_columns, queried_rows="
             (first_row, last_row) = queried_rows
         except:
             print(
-                f"Queried Range: {queried_rows} must be a TUPLE, containing only TWO numbers")
+                f"Queried Range: {queried_rows} must be a TUPLE, containing odby TWO numbers")
             sys.exit(1)
 
     # extract the data
@@ -156,7 +156,7 @@ def create_nl_entries(nl, workbook, sheet_index, desired_columns, queried_rows="
                         output_data, clean_datetime)
 
                 row_data.append(output_data)
-            nl.append(row_data)
+            db.append(row_data)
 
             # display progress
             if print_statements:
@@ -166,31 +166,31 @@ def create_nl_entries(nl, workbook, sheet_index, desired_columns, queried_rows="
 
         if print_statements:
             print(f"Extracting data from {workbook}: 100%")
-        return nl
+        return db
 
     # raise error in case of issues
     except:
         print(
-            f"Queried Range: {queried_rows} must be a TUPLE, containing only TWO numbers, whereby the second number is bigger than the first number")
+            f"Queried Range: {queried_rows} must be a TUPLE, containing odby TWO numbers, whereby the second number is bigger than the first number")
         sys.exit(1)
 
 
-def extend_nl_entries(nl, workbook, sheet_index, desired_columns, queried_index, queried_column, backups=[], clean_datetime=False, check_previous=False, print_statements=True):
+def extend_db_entries(db, workbook, sheet_index, desired_columns, queried_index, queried_column, backups=[], clean_datetime=False, check_previous=False, print_statements=True):
     """
-    THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR NESTED_LIST;
+    THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR NESTED LIST;
     IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
-    IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE NESTED_LIST.
-        - nl                -- the nested_list being written
+    IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE NESTED LIST.
+        - db                -- the nested list being written
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
                                 eg: ['A', 'B', 'F']
                                 will return data entries from columns A, B and F in Excel
         - queried_index     -- the input being queried for matches within the queried_column;
-                                namely an index of the data in a nested_list entry
+                                namely an index of the data in a nested list entry
                                 (returning the queried_datum)
                                 eg: 3
-                                will take i[3] from the entry in the nested_list,
+                                will take i[3] from the entry in the nested list,
                                 and search for a match within the queried_column
         - queried_column    -- the column of information that is being queried for a match against
                                 the queried_datum
@@ -212,15 +212,15 @@ def extend_nl_entries(nl, workbook, sheet_index, desired_columns, queried_index,
         - print_statements  -- will return print-statements outlining progress of data extraction
                                 if True (True by default)
     """
-    for (index, i) in enumerate(nl):
+    for (index, i) in enumerate(db):
         queried_datum = i[queried_index]
 
         # check previous to save time
-        if (check_previous == True) and (len(nl[index-1]) > 0) and ((nl[index-1][queried_index]) == queried_datum):
-            entry_difference = (len(nl[index-1]) - len(i))
+        if (check_previous == True) and (len(db[index-1]) > 0) and ((db[index-1][queried_index]) == queried_datum):
+            entry_difference = (len(db[index-1]) - len(i))
             for j in range(entry_difference):
                 i.append(None)
-                i[(len(i)-1)] = nl[index-1][(len(i)-1)]
+                i[(len(i)-1)] = db[index-1][(len(i)-1)]
 
         else:
             row_number = check_row_number(
@@ -278,17 +278,17 @@ def extend_nl_entries(nl, workbook, sheet_index, desired_columns, queried_index,
 
         # display progress
         if print_statements:
-            progress = ((index/len(nl))*100)
+            progress = ((index/len(db))*100)
             print(f"Extracting data from {workbook}: {int(progress)}% -- {i}")
 
     print(f"Extracting data from {workbook}: 100%")
-    return nl
+    return db
 
 
-def write_nl_to_excel_workbook(nl, workbook, print_statements=True):
+def write_db_to_excel_workbook(db, workbook, print_statements=True):
     """
-    THIS FUNCTION IS USED TO TRANSFER YOUR NESTED_LIST BACK INTO MICROSOFT EXCEL.
-        - nl                -- the nested_list being extracted from
+    THIS FUNCTION IS USED TO TRANSFER YOUR NESTED LIST BACK INTO MICROSOFT EXCEL.
+        - db                -- the nested list being extracted from
         - workbook          -- the workbook being written
         - print_statements  -- will return print-statements outlining progress of data extraction
                                 if True (True by default)
@@ -298,14 +298,14 @@ def write_nl_to_excel_workbook(nl, workbook, print_statements=True):
 
     row = 0
 
-    for (index, i) in enumerate(nl):
+    for (index, i) in enumerate(db):
         for (col, j) in enumerate(i):
             output_worksheet.write(row, col, j)
         row += 1
 
         # display progress
         if print_statements:
-            progress = ((index/len(nl))*100)
+            progress = ((index/len(db))*100)
             print(f"Extracting data from nested list: {int(progress)}%: {i}")
 
     if print_statements:
