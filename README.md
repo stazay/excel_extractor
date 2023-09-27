@@ -79,7 +79,7 @@ print_statements=True
  
 ____
  
- 4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in previous search, then instead extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
+ 4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". 
 ````
 extend_nl_entries(
 nl=nl,
@@ -93,7 +93,20 @@ clean_datetime=False,
 check_previous=True,
 print_statements=True
 )
+````
 
+The above code extracts additional data to the nested_list from workbook_2.
+* First, sheet_index:2 of workbook_2 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1). 
+* If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the nested_list entry.
+* No backup searches are defined. 
+* Datetime objects are not cleaned.
+* Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
+* After each entry extracted, a print statement will be made.
+
+____
+
+5. Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in previous search, then instead extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
+````
 workbook_3_backups = define_backups(workbook_3, 8, ["F", "H"], 3, "D")
 
 extend_nl_entries(
@@ -110,26 +123,15 @@ print_statements=True
 )
 ````
 
-The above code extracts additional data to the nested_list from workbook_2 and workbook_3.
-
+The above code extracts additional data to the nested_list from workbook_2, using workbook_3 as a backup in case of not finding any match.
 
 (a) 
-* First, sheet_index:2 of workbook_2 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1). 
-* If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the nested_list entry.
-* No backup searches are defined. 
-* Datetime objects are not cleaned.
-* Previous entry in the nested_list is being checked for a match in the `nl[i][queried_index]`, to save time and extract the same information extracted as previously.
-* After each entry extracted, a print statement will be made.
-
-
-(b) 
-* Next, a `backup` is defined for the next stage of data extraction (from workbook_3).
+* A `backup` is defined for the next stage of data extraction (from workbook_3) - NOTE: multiple backups can be defined.
 * This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
 * If a match is found in the entirety of column D, corresponding data from columns F and H are appended to the nested_list entry.
 * NOTE: The `backup` code is only used if the next stage of the data extraction fails to find any match.
 
-
-(c) 
+(b) 
 * Finally, sheet_index:1 of workbook_3 is searched for matches of the `nl[i][queried_index]` (3rd index in the item in the nested_list and column F from workbook_1).
 * If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the nested_list entry.
 * Backup entries are defined in the section above (b).
@@ -139,7 +141,7 @@ The above code extracts additional data to the nested_list from workbook_2 and w
 
 ____
 
-5. Paste data from output nested list (nl) to output workbook.
+6. Paste data from output nested list (nl) to output workbook.
 ````
 write_nl_to_excel_workbook(
 nl=nl,
