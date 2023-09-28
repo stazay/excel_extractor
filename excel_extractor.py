@@ -114,7 +114,7 @@ def create_db_entries(db, workbook, sheet_index, desired_columns, queried_rows="
     """
     THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR NESTED LIST (DB);
     ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE NESTED LIST (DB).
-        - db                -- the nested list being written
+        - db                -- the nested list being created
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
@@ -180,7 +180,7 @@ def extend_db_entries(db, workbook, sheet_index, desired_columns, queried_index,
     THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR NESTED LIST;
     IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK.
     IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO THE NESTED LIST.
-        - db                -- the nested list being written
+        - db                -- the nested list being extended
         - workbook          -- the workbook being queried
         - sheet_index       -- the worksheet being queried
         - desired_columns   -- a list containing all of the columns from which to extract data from
@@ -289,7 +289,7 @@ def write_db_to_excel_workbook(db, workbook, print_statements=True):
     """
     THIS FUNCTION IS USED TO TRANSFER YOUR NESTED LIST BACK INTO MICROSOFT EXCEL.
         - db                -- the nested list being extracted from
-        - workbook          -- the workbook being written
+        - workbook          -- the workbook being written to
         - print_statements  -- will return print-statements outlining progress of data extraction
                                 if True (True by default)
     """
