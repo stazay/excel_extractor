@@ -1,145 +1,185 @@
+
 # excel_extractor - a basic 'relational database' tool
 
-The purpose of this code is to be able to consolidate data from Excel spreadsheets. 
+The purpose of this code is to consolidate data from Excel spreadsheets.
 
-A further function allows it to use links between these spreadsheets - and extract data from other spreadsheets where there is a matching point of reference.
+It can link between these spreadsheets to extract data where there is a matching reference point.
 
-Finally, Python can then return a nested list (db) - each sub-list representing what would be a row from the spreadsheet - which can be written to an Excel workbook for later use.
+Finally, Python returns a nested list (`db`), where each sub-list represents a row from the spreadsheet, which can be written back to an Excel workbook for later use.
 
+---
 
 # Installation
 
-1. Start by copying this repository into your workspace. After which, you can install excel_extractor using pip.
-````
+1. Clone this repository into your workspace and install `excel_extractor` using pip:
+
+```bash
 git clone https://github.com/stazay/excel_extractor.git
 pip install .
-````
+```
 
-2. In your code, simply enter the following, and you'll be able to use this tool in your own code.
-````
+2. Import the package in your Python code:
+
+```python
 import excel_extractor
-````
+```
 
-# Description of key functions included
-* `define_backups()` - THIS FUNCTION IS USED TO DEFINE BACKUPS ARGUMENT, IF REQUIRED, FOR USE WITH EXTEND_DB_ENTRIES().
+---
 
-* `extract_datum()` - THIS FUNCTION SEARCHES FOR CORRESPONDING DATA WITHIN THE QUERIED CELL, AND RETURNS IT AS AN OUTPUT.
+# Description of Key Functions
 
-* `create_db_entries()` - THIS FUNCTION IS USED TO CREATE THE BASIS OF YOUR NESTED LIST; ALL ENTRIES WITHIN THE RANGE ARE WRITTEN TO THE NESTED LIST.
+- `define_backups()`  
+  Defines backups for use with `extend_db_entries()`, in case the main search fails.
 
-* `extend_db_entries()` - THIS FUNCTION IS USED TO ADD DATA TO EXISTING ENTRIES IN YOUR NESTED LIST; IT SEARCHES FOR MATCHES OF QUERIED DATA WITHIN THE QUERIED COLUMN OF THE WORKBOOK. IT THEN EXTRACTS CORRESPONDING DATA FROM THE DESIRED COLUMNS AND APPENDS IT TO ENTRIES WITHIN THE NESTED LIST.
+- `extract_datum()`  
+  Searches for corresponding data within the queried cell and returns it.
 
-* `write_db_to_excel_workbook()` - THIS FUNCTION IS USED TO TRANSFER YOUR DATABASE BACK INTO MICROSOFT EXCEL.
+- `create_db_entries()`  
+  Creates the base nested list; all entries within the specified range are extracted into this list.
 
+- `extend_db_entries()`  
+  Adds data to existing entries in the nested list by matching queried data in a specified column of the workbook. Extracts corresponding data from desired columns and appends it to the entries.
 
-# Example of code being used
-1. Start by defining the output nested list, and output workbook (if wanting to transport the data back to a workbook).
-````
+- `write_db_to_excel_workbook()`  
+  Writes your nested list (`db`) back into a Microsoft Excel workbook.
+
+---
+
+# Example Usage
+
+---
+
+### 1. Define the output nested list and output workbook
+
+```python
+import xlsxwriter as xlsx
+
 db = []
 output_workbook = xlsx.Workbook("output.xlsx")
 output_worksheet = output_workbook.add_worksheet()
-````
+```
 
-____
+---
 
-2. Define any workbooks of interest, from which you wish to extract data from.
-````
-workbook_1 = xw.Book("C:\Users\James\Documents\workbook_1.xlsx")
-workbook_2 = xw.Book("C:\Users\James\Documents\workbook_2.xlsx")
-workbook_3 = xw.Book("C:\Users\James\Documents\workbook_3.xlsx")
-````
+### 2. Define workbooks to extract data from
 
-____
+```python
+import xlwings as xw
 
-3. Extract relevant data from workbook_1, sheet_index: 0, from columns "A", "B", "C", "F", "M" & "Q" to nested list (db).
-````
+workbook_1 = xw.Book(r"C:\Users\James\Documents\workbook_1.xlsx")
+workbook_2 = xw.Book(r"C:\Users\James\Documents\workbook_2.xlsx")
+workbook_3 = xw.Book(r"C:\Users\James\Documents\workbook_3.xlsx")
+```
+
+---
+
+### 3. Extract relevant data from workbook_1, sheet_index 0, columns A, B, C, F, M, Q
+
+```python
 create_db_entries(
-db=db,
-workbook=workbook_1,
-sheet_index=0,
-desired_columns=["A", "B", "C", "F", "M", "Q"],
-queried_rows=(1, 250),
-clean_datetime="%d/%m/%Y",
-print_statements=True
+    db=db,
+    workbook=workbook_1,
+    sheet_index=0,
+    desired_columns=["A", "B", "C", "F", "M", "Q"],
+    queried_rows=(1, 250),
+    clean_datetime="%d/%m/%Y",
+    print_statements=True
 )
-````
-* The above code defines that we are using workbook_1 to extract info from sheet_index:0.
-* Next, all data from columns A, B, C, F, M and Q are being extracted to the nested list, within all rows between the range of 1 and 250.
-* All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-* After each entry extracted, a print statement will be made.
- 
-____
- 
- 4. Extract relevant data from workbook_2, sheet_index: "2", specifically from queried_columns: "A" and "F". 
-````
+```
+
+- Extracts columns A, B, C, F, M, and Q from rows 1 to 250 in sheet 0 of `workbook_1`.
+- Dates are cleaned to `dd/mm/yyyy` format.
+- Prints a statement after each entry is extracted.
+
+---
+
+### 4. Extend `db` with data from workbook_2, sheet_index 2, columns A and F
+
+```python
 extend_db_entries(
-db=db,
-workbook=workbook_2,
-sheet_index=2,
-desired_columns=["A","F"],
-queried_index=3,
-queried_column="D",
-backups=[],
-clean_datetime=False,
-check_previous=True,
-print_statements=True
+    db=db,
+    workbook=workbook_2,
+    sheet_index=2,
+    desired_columns=["A", "F"],
+    queried_index=3,
+    queried_column="D",
+    backups=[],
+    clean_datetime=False,
+    check_previous=True,
+    print_statements=True
 )
-````
+```
 
-The above code extracts additional data to the nested list from workbook_2.
-* First, sheet_index:2 of workbook_2 is searched for matches of the `db[i][queried_index]` (3rd index in the item in the nested list and column F from workbook_1). 
-* If a match is found in the entirety of column D, corresponding data from columns A and F are appended to the nested list entry.
-* No backup searches are defined. 
-* Datetime objects are not cleaned.
-* Previous entry in the nested list is being checked for a match in the `db[i][queried_index]`, to save time and extract the same information extracted as previously.
-* After each entry extracted, a print statement will be made.
+- Searches column D in `workbook_2` sheet 2 for matches with `db[i][3]`.
+- If found, appends data from columns A and F to `db`.
+- No backups used.
+- Datetime cleaning disabled.
+- Checks previous entries to avoid redundant extraction.
+- Prints a statement after each entry is extracted.
 
-____
+---
 
-5. Next, extract relevant data from workbook_3, sheet_index: "2", queried_column: "D". If there is no match found in previous search, then instead extract relevant data from workbook_3, sheet_index: "3" via queried_column: "C".
-````
-workbook_3_backups = define_backups(workbook_3, 8, ["F", "H"], 3, "D")
+### 5. Extract data from workbook_3 with backup sheets
+
+```python
+workbook_3_backups = define_backups(
+    workbook=workbook_3,
+    sheet_index=8,
+    desired_columns=["F", "H"],
+    queried_index=3,
+    queried_column="D"
+)
 
 extend_db_entries(
-db=db,
-workbook=workbook_3,
-sheet_index=1,
-desired_columns=["F", "M"],
-queried_index=3,
-queried_column="C",
-backups=[workbook_3_backups],
-clean_datetime="%d/%m/%Y",
-check_previous=True,
-print_statements=True
+    db=db,
+    workbook=workbook_3,
+    sheet_index=1,
+    desired_columns=["F", "M"],
+    queried_index=3,
+    queried_column="C",
+    backups=[workbook_3_backups],
+    clean_datetime="%d/%m/%Y",
+    check_previous=True,
+    print_statements=True
 )
-````
+```
 
-The above code extracts additional data to the nested list from workbook_3, sheetindex_2. In case of not finding any match, workbook_3, sheet_index_8 is queried instead.
+- Defines a backup search on `workbook_3` sheet 8, columns F and H, searched by column D.
+- The main search is on sheet 1, columns F and M, searched by column C.
+- Uses the backup if no match found in the main search.
+- Cleans datetime values.
+- Checks previous entries to avoid redundant extraction.
+- Prints a statement after each entry is extracted.
 
-(a) 
-* A `backup` is defined for the next stage of data extraction (from workbook_3) - NOTE: multiple backups can be defined.
-* This is using workbook_3, sheet_index:8, extracting information from columns F and H, by searching for a match in the `db[i][queried_index]` (3rd index in the item in the nested list and column F from workbook_1).
-* If a match is found in the entirety of column D, corresponding data from columns F and H are appended to the nested list entry.
-* NOTE: The `backup` code is odby used if the next stage of the data extraction fails to find any match.
+---
 
-(b) 
-* Finally, sheet_index:1 of workbook_3 is searched for matches of the `db[i][queried_index]` (3rd index in the item in the nested list and column F from workbook_1).
-* If a match is found in the entirety of column C, corresponding data from columns F and M are appended to the nested list entry.
-* Backup entries are defined in the section above (b).
-* All datetime objects are being cleaned to the "dd/mm/yyyy" format (see datetime).
-* Previous entry in the nested list is being checked for a match in the `db[i][queried_index]`, to save time and extract the same information extracted as previously.
-* After each entry extracted, a print statement will be made.
+### 6. Write the nested list `db` to the output workbook
 
-____
-
-6. Paste data from output nested list (db) to output workbook.
-````
+```python
 write_db_to_excel_workbook(
-db=db,
-workbook="output.xlsx",
-print_statements=True
+    db=db,
+    workbook="output.xlsx",
+    print_statements=True
 )
-````
+```
 
-* Finally, this code will write the created output (defined `db`) into an excel workbook (defined `output.xlsx`).
-* After each entry extracted, a print statement will be made.
+- Writes the consolidated data to `output.xlsx`.
+- Prints a statement after each row is written.
+
+---
+
+# Notes
+
+- Ensure your Excel files are closed or opened in read-only mode when accessed by `xlwings`.
+- Test the tool on small datasets before large-scale use.
+- Combine with `pandas` for more advanced data manipulation if needed.
+
+---
+
+# Contribution
+
+Contributions and issues are welcome. Feel free to open an issue or pull request!
+
+---
+
+Happy data extracting!
