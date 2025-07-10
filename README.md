@@ -112,11 +112,3 @@ write_db_to_excel_workbook(
     print_statements=True
 )
 ```
-
-## License
-
-MIT License
-
----
-
-Feel free to open an issue or contribute to the project!
