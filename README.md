@@ -1,4 +1,4 @@
-# excel_extractor - a basic 'relational database' tool
+# excel_extractor - Extract and merge Excel spreadsheets with Python
 
 The purpose of this code is to consolidate data from Excel spreadsheets. 
 
