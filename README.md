@@ -1,4 +1,4 @@
-# excel_extractor - Extract and merge Excel spreadsheets with Python
+# excel_extractor - Extract and merge Excel spreadsheets
 
 The purpose of this code is to consolidate data from Excel spreadsheets. 
 
