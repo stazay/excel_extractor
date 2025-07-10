@@ -42,7 +42,7 @@ import excel_extractor
 
 - `define_backups()` - Defines backups argument for use with `extend_db_entries()`.
 - `extract_datum()` - Extracts data from a specified cell.
-- `create_db_entries()` - Creates the initial nested list (db) from the specified Excel range.
+- `create_db_entries()` - Creates the initial nested list (`db`) from the specified Excel range.
 - `extend_db_entries()` - Extends the nested list by searching for matches in other workbooks/sheets and appending corresponding data.
 - `write_db_to_excel_workbook()` - Writes the nested list data back into an Excel workbook.
 
